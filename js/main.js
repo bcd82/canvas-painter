@@ -7,13 +7,25 @@ const onInit = () => {
 const onChangeShape = (value) => {
     setShape(value)
 }
+
 const onChangeClr = (value) => {
     setColor(value)
+}
+const onChangeStrokeClr = (value) => {
+    setStrokeColor(value)
 }
 
 const onChangeSize = (value) => {
     setSize(value)
 }
+const onChangeStrokeSize = (value) => {
+    setStrokeSize(value)
+}
+
+const onToggleStroke = () => {
+    toggleStroke()
+}
+
 const onClearCanvas = () => {
     clearCanvas()
 }
@@ -54,22 +66,24 @@ function getEvPos(ev) {
     return pos
 }
 
-const onDown = (ev) => {
-    console.log('down')
+const onDown = ev => {
+    const pos = getEvPos(ev);
+    setStartPos(pos);
+    draw(pos)
     setIsPaint(true)
-    document.body.style.cursor = 'paint'
-
 }
-const onMove = (ev) => {
+const onMove = ev => {
     if (!gIsPaint) return;
     const pos = getEvPos(ev);
     draw(pos)
-    console.log('move')
 }
 
 const onUp = () => {
     setIsPaint(false)
-    console.log('up')
     gCtx.save()
 
+}
+
+const onImgInput = ev => {
+    loadImageFromInput(ev, renderImg)
 }

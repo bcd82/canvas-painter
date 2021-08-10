@@ -11,22 +11,35 @@
 
 <body onload="onInit()">
     <div class="input-bar">
-        <input type="color" onchange="onChangeClr(this.value)">
-        <input type="range" onchange="onChangeSize(this.value)" value="25" min="1" max="300">
-        <select onchange="onChangeShape(this.value)">
+        <label for="stroke-check">stroke</label>
+        <input id="stroke-check" type="checkbox" onchange="onToggleStroke()">
+        <label for="stroke-width">width</label>
+        <input id="stroke-width" type="range" onchange="onChangeStrokeSize(this.value)" value="2" min="1" max="10"
+            onmouseover="this.title = this.value">
+        <label for="stroke-clr">stroke color</label>
+        <input id="stroke-clr" type="color" onchange="onChangeStrokeClr(this.value)">
+        <label for="fill-clr">fill color</label>
+        <input id="fill-clr" type="color" onchange="onChangeClr(this.value)">
+        <label for="fill-size">size</label>
+        <input id="fill-size" type="range" onchange="onChangeSize(this.value)" value="25" min="1" max="300"
+            onmouseover="this.title = this.value">
+        <label for="shape">shape</label>
+        <select id="shape" onchange="onChangeShape(this.value)">
             <option value="circle">circle</option>
             <option value="rect">square</option>
             <option value="triangle">triangle</option>
+            <option value="free-rect">free square</option>
         </select>
         <button onclick="onClearCanvas()">
             clear
         </button>
-        <button>
-            download
-        </button>
-        <button>
-            upload
-        </button>
+        <a href="#" onclick="downloadCanvas(this)" download="myphoto">
+            <button>
+                download
+            </button>
+        </a>
+        <input type="file" onchange="onImgInput(event)">
+        </input>
         <button>
             share to FB
         </button>

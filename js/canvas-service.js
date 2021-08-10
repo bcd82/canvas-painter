@@ -3,8 +3,12 @@
 let gElCanvas;
 let gCtx;
 let gIsPaint;
+let gIsStrokeOn = false;
+let gStartPos;
 let gCurShape = 'circle';
 let gCurColor = 'black';
+let gCurStrokeClr = 'black'
+let gCurStrokeSize = 2
 let gCurSize = 25;
 
 
@@ -29,17 +33,26 @@ const renderCanvas = () => {
 }
 
 
-const setIsPaint = (isPaint) => {
+const setIsPaint = isPaint => {
     gIsPaint = isPaint;
 }
-const setShape = (shape) => {
+const setShape = shape => {
     gCurShape = shape;
 }
-const setColor = (color) => {
+const setColor = color => {
     gCurColor = color;
 }
-const setSize = (size) => {
+const setStrokeColor = color => {
+    gCurStrokeClr = color;
+}
+const setStrokeSize = size => {
+    gCurStrokeSize = size;
+}
+const setSize = size => {
     gCurSize = size;
+}
+const toggleStroke = () => {
+    gIsStrokeOn = !gIsStrokeOn;
 }
 
 
@@ -50,23 +63,22 @@ const draw = ({
     switch (gCurShape) {
         case 'circle':
             drawArc(x, y)
-            console.log('draw arc')
             break;
 
         case 'rect':
             drawRect(x, y)
-            console.log('draw rect')
             break;
-       
-        case 'rect':
+
+        case 'triangle':
             drawTriangle(x, y)
-            console.log('draw rect')
+            break;
+        case 'free-rect':
+            drawFreeRect(x, y)
             break;
 
         default:
             break;
     }
-    gCtx.save()
 
 }
 
@@ -74,4 +86,28 @@ function clearCanvas() {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
     // You may clear part of the canvas
     // gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height/4)
+}
+
+const downloadCanvas = elLink => {
+    const data = gElCanvas.toDataURL()
+    elLink.href = data
+}
+
+
+function loadImageFromInput(ev, onImageReady) {
+    var reader = new FileReader()
+
+    reader.onload =  (event) => {
+        var img = new Image()
+        img.onload = onImageReady.bind(null, img)
+        img.src = event.target.result
+    }
+    reader.readAsDataURL(ev.target.files[0])
+}
+
+const renderImg = img => {
+    gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
+}
+const setStartPos = (pos) => { 
+    gStartPos = pos
 }
