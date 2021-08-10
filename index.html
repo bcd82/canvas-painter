@@ -12,21 +12,25 @@
 <body onload="onInit()">
     <div class="toolbar ">
         <div class="box stroke">
-            <label for="stroke-check">stroke</label>
-            <input id="stroke-check" type="checkbox" onchange="onToggleStroke()">
+            <div class="checkbox">
+                <label for="stroke-check">stroke</label>
+                <input id="stroke-check" type="checkbox" onchange="onToggleStroke()">
+            </div>
             <label for="stroke-width">width</label>
             <input id="stroke-width" type="range" onchange="onChangeStrokeSize(this.value)" value="2" min="1" max="10"
                 onmouseover="this.title = this.value">
-            <label for="stroke-clr">stroke color</label>
+            <label for="stroke-clr"> color</label>
             <input id="stroke-clr" type="color" onchange="onChangeStrokeClr(this.value)">
         </div>
         <div class="box fill">
-            <label for="fill-check">fill</label>
-            <input id="fill-check" type="checkbox" onchange="onToggleFill()" checked>
+            <div class="checkbox">
+                <label for="fill-check">fill</label>
+                <input id="fill-check" type="checkbox" onchange="onToggleFill()" checked>
+            </div>
             <label for="fill-size">size</label>
             <input id="fill-size" type="range" onchange="onChangeSize(this.value)" value="25" min="1" max="300"
-            onmouseover="this.title = this.value">
-            <label for="fill-clr">fill color</label>
+                onmouseover="this.title = this.value">
+            <label for="fill-clr"> color</label>
             <input id="fill-clr" type="color" onchange="onChangeClr(this.value)">
         </div>
         <div class="box">
@@ -45,20 +49,25 @@
         </button>
         <a href="#" onclick="downloadCanvas(this)" download="myphoto">
             <button>
-                download
+                DOWNLOAD
             </button>
         </a>
-        <input type="file" onchange="onImgInput(event)">
+        <label for="upload" class="upload">Upload image</label>
+
+        <input id="upload" type="file" onchange="onImgInput(event)">
         </input>
-        <button>
+        <button onclick="onUploadImg()">
             share to FB
         </button>
+        <div class="user-msg"></div>
+        <div class="share-container"></div>
         <button class="menu-btn" onclick="onShowToolbar(this)">menu</button>
     </div>
     <div class="canvas-container">
         <canvas width="400" height="500">
     </div>
     <script src="./js/shape-service.js"></script>
+    <script src="./js/upload-service.js"></script>
     <script src="./js/canvas-service.js"></script>
     <script src="./js/main.js"></script>
 </body>

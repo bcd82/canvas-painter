@@ -91,5 +91,21 @@ const onShowToolbar = (elBtn) => {
     let elBody = document.querySelector('body')
     elBody.classList.toggle('menu-mobile-open')
     if (elBody.classList.contains('menu-mobile-open')) elBtn.innerText = 'close'
-    else elBtn.innerText = 'menu' 
+    else elBtn.innerText = 'menu'
+}
+
+const onUploadImg = () => {
+    const imgDataUrl = gElCanvas.toDataURL("image/jpeg");
+
+    // A function to be called if request succeeds
+    function onSuccess(uploadedImgUrl) {
+        const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
+        document.querySelector('.user-msg').innerHTML = `<p>Your photo is available <a href="${uploadedImgUrl}">here</a></p>`
+
+        document.querySelector('.share-container').innerHTML = `
+        <a class="btn" href="https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}'); return false;">
+           Share   
+        </a>`
+    }
+    doUploadImg(imgDataUrl, onSuccess);
 }
