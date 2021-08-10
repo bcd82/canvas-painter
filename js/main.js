@@ -11,14 +11,20 @@ const onChangeClr = (value) => {
     setColor(value)
 }
 
+const onChangeSize = (value) => {
+    setSize(value)
+}
+const onClearCanvas = () => {
+    clearCanvas()
+}
 
 const addListeners = () => {
     addMouseListeners()
     // addTouchListeners()
-    window.addEventListener('resize', () => {
-        resizeCanvas()
-        renderCanvas()
-    })
+    // window.addEventListener('resize', () => {
+    //     resizeCanvas()
+    //     renderCanvas()
+    // })
 }
 const addMouseListeners = () => {
     gElCanvas.addEventListener('mousemove', onMove)
@@ -49,21 +55,21 @@ function getEvPos(ev) {
 }
 
 const onDown = (ev) => {
-    const pos = getEvPos(ev);
     console.log('down')
-    gStartPos = pos;
     setIsPaint(true)
     document.body.style.cursor = 'paint'
 
 }
 const onMove = (ev) => {
-    if(!gIsPaint) return;
+    if (!gIsPaint) return;
+    const pos = getEvPos(ev);
+    draw(pos)
     console.log('move')
-
 }
 
-function onUp() {
+const onUp = () => {
     setIsPaint(false)
     console.log('up')
+    gCtx.save()
 
 }
