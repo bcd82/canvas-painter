@@ -68,8 +68,6 @@ function getEvPos(ev) {
 }
 
 const onDown = ev => {
-    console.log(ev)
-
     const pos = getEvPos(ev);
     setStartPos(pos);
     setIsPaint(true)
@@ -87,4 +85,11 @@ const onUp = () => {
 
 const onImgInput = ev => {
     loadImageFromInput(ev, renderImg)
+}
+
+const onShowToolbar = (elBtn) => {
+    let elBody = document.querySelector('body')
+    elBody.classList.toggle('menu-mobile-open')
+    if (elBody.classList.contains('menu-mobile-open')) elBtn.innerText = 'close'
+    else elBtn.innerText = 'menu' 
 }

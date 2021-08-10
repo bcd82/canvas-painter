@@ -1,60 +1,103 @@
 * {
     box-sizing: border-box;
-    
+
 }
+
 html {
     font-family: Arial, Helvetica, sans-serif;
     text-transform: uppercase;
-    
+
 }
-h1,h2,h3,p,input,div,img,body { 
+
+body {
+    height: 100vh;
+}
+
+h1,
+h2,
+h3,
+p,
+input,
+div,
+img,
+body {
     padding: 0;
     margin: 0;
 }
-.input-bar { 
+
+.toolbar {
+    transform: translateY(-90%);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    width:100%;
+    width: 100%;
     background-color: rgba(170, 198, 250, 0.966);
-    position:fixed;
-    gap:10px;
-    padding: 20px 0;
+    position: fixed;
+    gap: 10px;
+    padding: 10px 0 0 0 ;
     box-shadow: 0 0 10px rgba(4, 23, 110, 0.877);
-    z-index:1;
-    margin-bottom:80px;
-    
+    z-index: 1;
+    margin-bottom: 80px;
 
+    transition: transform .4s ease-out;
 }
-.input-bar > * { 
+body.menu-mobile-open .toolbar{
+    transform: translateY(0%);
+}
+
+.toolbar>* {
     text-transform: uppercase;
 }
-input[type=range] { 
-    width:60px;
+
+input[type=range] {
+    width: 60px;
 }
 
-
-.canvas-container { 
+.canvas-container {
     position: relative;
-    width:100%;
-    height:100vh;
-    margin:auto;
+    width: 100%;
+    height: 100vh;
+    margin: auto;
     background-color: rgba(242, 245, 216, 0.336);
     cursor: crosshair;
 }
-label { 
-    font-size:12px;
+
+label {
+    font-size: 12px;
     display: flex;
     flex-wrap: wrap;
-    max-width:50px;
+    max-width: 50px;
 }
-@media (min-width: 700px)  {
-    .canvas-container { 
-        width:800px;
-        height:800px;
-        top:100px;
+.menu-btn { 
+    width:100%;
+    top:0
+}
+
+@media (min-width: 700px) {
+    .canvas-container {
+        width: 800px;
+        height: 800px;
+        top: 100px;
         box-shadow: 0px 0px 10px black;
     }
-    
+
+    .toolbar {
+        transform: translateY(0%);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        background-color: rgba(170, 198, 250, 0.966);
+        position: fixed;
+        gap: 10px;
+        padding: 20px 0;
+        box-shadow: 0 0 10px rgba(4, 23, 110, 0.877);
+        z-index: 1;
+        margin-bottom: 80px;
+    }
+    .menu-btn { 
+        display: none;
+    }
 }

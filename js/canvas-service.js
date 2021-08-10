@@ -48,7 +48,7 @@ const setSize = size => {
 const toggleStroke = () => {
     gIsStrokeOn = !gIsStrokeOn;
 }
-const toggleFill= () => {
+const toggleFill = () => {
     gIsFillOn = !gIsFillOn;
 }
 
@@ -60,6 +60,9 @@ const draw = ({
     switch (gCurShape) {
         case 'circle':
             drawArc(x, y)
+            break;
+        case 'circle-rnd':
+            drawArcRnd(x, y)
             break;
 
         case 'rect':
@@ -81,8 +84,6 @@ const draw = ({
 
 function clearCanvas() {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
-    // You may clear part of the canvas
-    // gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height/4)
 }
 
 const downloadCanvas = elLink => {
@@ -90,12 +91,10 @@ const downloadCanvas = elLink => {
     elLink.href = data
 }
 
-
 function loadImageFromInput(ev, onImageReady) {
-    var reader = new FileReader()
-
-    reader.onload =  (event) => {
-        var img = new Image()
+    let reader = new FileReader()
+    reader.onload = (event) => {
+        const img = new Image()
         img.onload = onImageReady.bind(null, img)
         img.src = event.target.result
     }
@@ -105,6 +104,6 @@ function loadImageFromInput(ev, onImageReady) {
 const renderImg = img => {
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
 }
-const setStartPos = (pos) => { 
+const setStartPos = (pos) => {
     gStartPos = pos
 }

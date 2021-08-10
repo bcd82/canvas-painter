@@ -10,7 +10,7 @@
 </head>
 
 <body onload="onInit()">
-    <div class="input-bar">
+    <div class="toolbar ">
         <label for="stroke-check">stroke</label>
         <input id="stroke-check" type="checkbox" onchange="onToggleStroke()">
         <label for="stroke-width">width</label>
@@ -28,6 +28,7 @@
         <label for="shape">shape</label>
         <select id="shape" onchange="onChangeShape(this.value)">
             <option value="circle">circle</option>
+            <option value="circle-rnd">random circle</option>
             <option value="rect">square</option>
             <option value="triangle">triangle</option>
             <option value="free-rect">free square</option>
@@ -45,6 +46,7 @@
         <button>
             share to FB
         </button>
+        <button class="menu-btn" onclick="onShowToolbar(this)">menu</button>
     </div>
     <div class="canvas-container">
         <canvas width="400" height="500">
