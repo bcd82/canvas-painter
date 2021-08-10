@@ -1,5 +1,7 @@
 'use strict'
 
+const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
+
 const onInit = () => {
     canvasInit()
 }
@@ -25,6 +27,9 @@ const onChangeStrokeSize = (value) => {
 const onToggleStroke = () => {
     toggleStroke()
 }
+const onToggleFill = () => {
+    toggleFill()
+}
 
 const onClearCanvas = () => {
     clearCanvas()
@@ -32,11 +37,7 @@ const onClearCanvas = () => {
 
 const addListeners = () => {
     addMouseListeners()
-    // addTouchListeners()
-    // window.addEventListener('resize', () => {
-    //     resizeCanvas()
-    //     renderCanvas()
-    // })
+
 }
 const addMouseListeners = () => {
     gElCanvas.addEventListener('mousemove', onMove)
@@ -44,33 +45,34 @@ const addMouseListeners = () => {
     gElCanvas.addEventListener('mouseup', onUp)
 }
 
-// const addTouchListeners = () => {
-//     gElCanvas.addEventListener('touchmove', onMove)
-//     gElCanvas.addEventListener('touchstart', onDown)
-//     gElCanvas.addEventListener('touchend', onUp)
-// }
+const addTouchListeners = () => {
+    gElCanvas.addEventListener('touchmove', onMove)
+    gElCanvas.addEventListener('touchstart', onDown)
+    gElCanvas.addEventListener('touchend', onUp)
+}
 
 function getEvPos(ev) {
     var pos = {
         x: ev.offsetX,
         y: ev.offsetY
     }
-    // if (gTouchEvs.includes(ev.type)) {
-    //     ev.preventDefault()
-    //     ev = ev.changedTouches[0]
-    //     pos = {
-    //         x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
-    //         y: ev.pageY - ev.target.offsetTop - ev.target.clientTop
-    //     }
-    // }
+    if (gTouchEvs.includes(ev.type)) {
+        ev.preventDefault()
+        ev = ev.changedTouches[0]
+        pos = {
+            x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
+            y: ev.pageY - ev.target.offsetTop - ev.target.clientTop
+        }
+    }
     return pos
 }
 
 const onDown = ev => {
+    console.log(ev)
     const pos = getEvPos(ev);
     setStartPos(pos);
-    draw(pos)
     setIsPaint(true)
+    draw(pos)
 }
 const onMove = ev => {
     if (!gIsPaint) return;
