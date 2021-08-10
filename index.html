@@ -9,10 +9,10 @@
 </head>
 <body onload="onInit()">
     <div class="input-bar">
-        <input type="color">
+        <input type="color" onchange="onChangeClr(this.value)">
         <select onchange="onChangeShape(this.value)">
             <option value="circle" >circle</option>
-            <option value="square" >square</option>
+            <option value="rect" >square</option>
         </select>
         <button>
             clear

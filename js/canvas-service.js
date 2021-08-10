@@ -1,8 +1,11 @@
 'use strict'
+
 let gElCanvas;
 let gCtx;
 let gStartPos;
-let gCurShape = 'circle'; 
+var gIsPaint;
+let gCurShape = 'circle';
+let gCurColor = 'black';
 
 
 const canvasInit = () => {
@@ -10,8 +13,7 @@ const canvasInit = () => {
     gCtx = gElCanvas.getContext('2d')
     resizeCanvas()
     renderCanvas()
-    console.log('am i working')
-
+    addListeners()
 }
 
 const resizeCanvas = () => {
@@ -21,8 +23,22 @@ const resizeCanvas = () => {
 }
 
 const renderCanvas = () => {
-
+    gCtx.save()
+    gCtx.fillStyle = "rgba(242, 245, 216, 0.336)"
+    gCtx.fillRect(0, 0, gElCanvas.width, gElCanvas.height)
+    gCtx.restore()
 }
-const setShape =(shape) => {
+
+// getter / setters 
+const setShape = (shape) => {
+    if (!shape) return gCurShape;
     gCurShape = shape;
+}
+const setColor = (color) => {
+    if (!color) return gCurColor;
+    gCurColor = color;
+}
+
+const setIsPaint= (isPaint) => {
+    gIsPaint = isPaint;
 }
