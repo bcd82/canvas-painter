@@ -37,7 +37,7 @@ const onClearCanvas = () => {
 
 const addListeners = () => {
     addMouseListeners()
-
+    addTouchListeners()
 }
 const addMouseListeners = () => {
     gElCanvas.addEventListener('mousemove', onMove)
@@ -69,6 +69,7 @@ function getEvPos(ev) {
 
 const onDown = ev => {
     console.log(ev)
+
     const pos = getEvPos(ev);
     setStartPos(pos);
     setIsPaint(true)
@@ -82,8 +83,6 @@ const onMove = ev => {
 
 const onUp = () => {
     setIsPaint(false)
-    gCtx.save()
-
 }
 
 const onImgInput = ev => {
