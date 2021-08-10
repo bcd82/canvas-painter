@@ -11,28 +11,35 @@
 
 <body onload="onInit()">
     <div class="toolbar ">
-        <label for="stroke-check">stroke</label>
-        <input id="stroke-check" type="checkbox" onchange="onToggleStroke()">
-        <label for="stroke-width">width</label>
-        <input id="stroke-width" type="range" onchange="onChangeStrokeSize(this.value)" value="2" min="1" max="10"
+        <div class="box stroke">
+            <label for="stroke-check">stroke</label>
+            <input id="stroke-check" type="checkbox" onchange="onToggleStroke()">
+            <label for="stroke-width">width</label>
+            <input id="stroke-width" type="range" onchange="onChangeStrokeSize(this.value)" value="2" min="1" max="10"
+                onmouseover="this.title = this.value">
+            <label for="stroke-clr">stroke color</label>
+            <input id="stroke-clr" type="color" onchange="onChangeStrokeClr(this.value)">
+        </div>
+        <div class="box fill">
+            <label for="fill-check">fill</label>
+            <input id="fill-check" type="checkbox" onchange="onToggleFill()" checked>
+            <label for="fill-size">size</label>
+            <input id="fill-size" type="range" onchange="onChangeSize(this.value)" value="25" min="1" max="300"
             onmouseover="this.title = this.value">
-        <label for="stroke-clr">stroke color</label>
-        <input id="stroke-clr" type="color" onchange="onChangeStrokeClr(this.value)">
-        <label for="fill-check">fill</label>
-        <input id="fill-check" type="checkbox" onchange="onToggleFill()" checked>
-        <label for="fill-clr">fill color</label>
-        <input id="fill-clr" type="color" onchange="onChangeClr(this.value)">
-        <label for="fill-size">size</label>
-        <input id="fill-size" type="range" onchange="onChangeSize(this.value)" value="25" min="1" max="300"
-            onmouseover="this.title = this.value">
-        <label for="shape">shape</label>
-        <select id="shape" onchange="onChangeShape(this.value)">
-            <option value="circle">circle</option>
-            <option value="circle-rnd">random circle</option>
-            <option value="rect">square</option>
-            <option value="triangle">triangle</option>
-            <option value="free-rect">free square</option>
-        </select>
+            <label for="fill-clr">fill color</label>
+            <input id="fill-clr" type="color" onchange="onChangeClr(this.value)">
+        </div>
+        <div class="box">
+            <label for="shape">shape</label>
+            <select id="shape" onchange="onChangeShape(this.value)">
+                <option value="circle">circle</option>
+                <option value="circle-rnd">random circle</option>
+                <option value="rect">square</option>
+                <option value="triangle">triangle</option>
+                <option value="free-rect">free square</option>
+            </select>
+
+        </div>
         <button onclick="onClearCanvas()">
             clear
         </button>
